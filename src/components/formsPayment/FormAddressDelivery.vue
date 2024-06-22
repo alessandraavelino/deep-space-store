@@ -2,117 +2,81 @@
   <v-form v-model="valid">
     <v-container>
       <v-row>
-        <v-col
-          cols="12"
-          md="4"
-        >
+        <v-col cols="12" md="4">
           <v-text-field
             v-model="CEP"
-            :counter="10"
-            :rules="nameRules"
             label="CEP"
-            hide-details
-            required
+            :rules="[rules.required, rules.cep]"
           ></v-text-field>
         </v-col>
 
-        <v-col
-          cols="12"
-          md="4"
-        >
+        <v-col cols="12" md="4">
           <v-text-field
-            v-model="lastname"
-            :counter="10"
-            :rules="nameRules"
+            v-model="state"
             label="Estado"
-            hide-details
-            required
+            :rules="[rules.required]"
           ></v-text-field>
         </v-col>
 
-        <v-col
-          cols="12"
-          md="4"
-        >
+        <v-col cols="12" md="4">
           <v-text-field
-            v-model="email"
-            :rules="emailRules"
+            v-model="city"
             label="Cidade"
-            hide-details
-            required
+            :rules="[rules.required]"
           ></v-text-field>
         </v-col>
-        <v-col
-          cols="12"
-          md="4"
-        >
+
+        <v-col cols="12" md="4">
           <v-text-field
-            v-model="email"
-            :rules="emailRules"
+            v-model="street"
             label="Rua"
-            hide-details
-            required
+            :rules="[rules.required]"
           ></v-text-field>
         </v-col>
-        <v-col
-          cols="12"
-          md="4"
-        >
+
+        <v-col cols="12" md="4">
           <v-text-field
-            v-model="email"
-            :rules="emailRules"
+            v-model="number"
             label="Número"
-            hide-details
-            required
+            type="number"
+            :rules="[rules.required]"
           ></v-text-field>
         </v-col>
-        <v-col
-          cols="12"
-          md="4"
-        >
+
+        <v-col cols="12" md="4">
           <v-text-field
-            v-model="email"
-            :rules="emailRules"
+            v-model="complement"
             label="Complemento"
-            hide-details
-            required
+            :rules="[rules.required]"
           ></v-text-field>
         </v-col>
       </v-row>
     </v-container>
   </v-form>
 </template>
+
 <script>
-  export default {
-    data: () => ({
+export default {
+  data() {
+    return {
       valid: false,
-      firstname: '',
-      lastname: '',
-      nameRules: [
-        value => {
-          if (value) return true
+      CEP: '',
+      state: '',
+      city: '',
+      street: '',
+      number: '',
+      complement: '',
+      rules: {
+        required: value => !!value || 'Campo obrigatório.',
+        cep: value => {
+          // Remove todos os caracteres não numéricos
+          const numericValue = value.replace(/\D/g, '');
 
-          return 'Name is required.'
-        },
-        value => {
-          if (value?.length <= 10) return true
-
-          return 'Name must be less than 10 characters.'
-        },
-      ],
-      email: '',
-      emailRules: [
-        value => {
-          if (value) return true
-
-          return 'E-mail is requred.'
-        },
-        value => {
-          if (/.+@.+\..+/.test(value)) return true
-
-          return 'E-mail must be valid.'
-        },
-      ],
-    }),
+          // Aceita CEP no formato 12345-678 ou 12345678
+          return /^(\d{5}-\d{3}|\d{8})$/.test(numericValue) || 'CEP inválido.';
+        }
+      }
+    };
   }
+};
 </script>

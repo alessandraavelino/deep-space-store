@@ -18,6 +18,7 @@
             v-model="email"
             :rules="emailRules"
             label="Data de validade"
+            type="date"
             hide-details
             required
           ></v-text-field>

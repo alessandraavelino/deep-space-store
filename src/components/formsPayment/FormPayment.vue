@@ -16,6 +16,11 @@
   <v-container v-if="radios == 'pix'">
     <Pix />
   </v-container>
+  <v-text-field
+    class="px-4"
+      label="Informe seu CPF"
+      :rules="[rules.required, rules.cpf]"
+    ></v-text-field>
 </template>
 <script>
 import BankSlip from '../methodsPayment/BankSlip.vue';
@@ -30,7 +35,63 @@ import Pix from '../methodsPayment/Pix.vue'
     data () {
       return {
         radios: 'one',
+        rules: {
+          cpf: value => {
+          const isValid = this.validaCPF(value); // Utiliza a função de validação do CPF
+          return isValid || 'CPF inválido.';
+        }
+        }
       }
     },
+    methods: {
+      formatCPF(event) {
+      let cpf = event.target.value.replace(/\D/g, '');
+      if (cpf.length > 11) {
+        cpf = cpf.slice(0, 11);
+      }
+      cpf = cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
+      this.cpf = cpf;
+    },
+    validaCPF(cpf) {
+      cpf = cpf.replace(/[^\d]+/g, ''); // Remove caracteres não numéricos
+
+      if (cpf.length !== 11) return false; // Verifica se o CPF tem 11 dígitos
+
+      // Verifica se todos os dígitos são iguais, o que não é um CPF válido
+      if (/^(\d)\1+$/.test(cpf)) return false;
+
+      // Validação do CPF
+      let sum = 0;
+      let remainder;
+
+      for (let i = 1; i <= 9; i++) {
+        sum += parseInt(cpf.substring(i - 1, i)) * (11 - i);
+      }
+
+      remainder = (sum * 10) % 11;
+
+      if (remainder === 10 || remainder === 11) {
+        remainder = 0;
+      }
+
+      if (remainder !== parseInt(cpf.substring(9, 10))) return false;
+
+      sum = 0;
+
+      for (let i = 1; i <= 10; i++) {
+        sum += parseInt(cpf.substring(i - 1, i)) * (12 - i);
+      }
+
+      remainder = (sum * 10) % 11;
+
+      if (remainder === 10 || remainder === 11) {
+        remainder = 0;
+      }
+
+      if (remainder !== parseInt(cpf.substring(10, 11))) return false;
+
+      return true;
+    },
+    }
   }
 </script>

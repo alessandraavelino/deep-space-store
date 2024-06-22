@@ -58,7 +58,7 @@ export default {
       return this.step === 1 ? 'Cancelar' : 'Anterior';
     },
     nextStepText() {
-      return this.step === this.items.length ? 'Finalizar' : 'Próximo';
+      return this.step === this.items.length ? 'Finalizar compra' : 'Próximo';
     }
   },
 };
