@@ -1,10 +1,10 @@
 <template>
-  <Sidebar />
-  <Checkout />
-
+  <div id="app">
+    <Sidebar /> <!-- Componente Sidebar -->
+    <router-view /> <!-- Componente de visualização de rota -->
+  </div>
 </template>
 
 <script setup>
-import Sidebar from './components/Sidebar.vue'
-import Checkout from './components/Checkout.vue'
+import Sidebar from './components/Sidebar.vue';
 </script>

@@ -3,7 +3,7 @@
     :disabled="loading"
     :loading="loading"
     class="mx-auto my-2"
-    max-width="374"
+    max-width="400"
   >
     <template v-slot:loader="{ isActive }">
       <v-progress-linear
@@ -15,19 +15,16 @@
     </template>
 
     <v-img
-      height="250"
-      src="https://cdn.vuetifyjs.com/images/cards/cooking.png"
+      :src="offer.image"
       cover
     ></v-img>
 
     <v-card-item>
-      <v-card-title>Cafe Badilico</v-card-title>
+      <v-card-title>{{ offer.name }}</v-card-title>
     </v-card-item>
 
     <v-card-text>
-      <v-row
-        class="mx-0"
-      >
+      <v-row class="mx-0">
         <v-rating
           :model-value="4.5"
           color="amber"
@@ -43,14 +40,63 @@
       </v-row>
 
       <div class="my-4 text-subtitle-1">
-        R$ •
+        R$ • {{ offer.price }}
       </div>
 
-      <div>Small plates, salads & sandwiches - an intimate setting with 12 indoor seats plus patio seating.</div>
+      <div class="my-4">{{ offer.description }}</div>
+      <div class="my-2">
+        <strong>Qtd. de páginas: </strong>{{ offer.numberPages }}
+      </div>
+      <div class="my-2">
+        <strong>Editora: </strong>{{ offer.publisher }}
+      </div>
+      <div class="my-2">
+        <strong>ISBN: </strong>{{ offer.isbn }}
+      </div>
+      <div class="my-2">
+        <strong>Dimensões: </strong>{{ offer.dimensions }}
+      </div>
+      <div class="my-2">
+        <strong>Linguagem: </strong>{{ offer.language }}
+      </div>
+      <div class="my-2">
+        <strong>Autor (a): </strong>{{ offer.author }}
+      </div>
     </v-card-text>
   </v-card>
 </template>
+
 <script>
-  export default {
-  }
+import axios from 'axios';
+
+export default {
+  props: {
+    offerCode: {
+      type: String,
+      required: true
+    }
+  },
+  data() {
+    return {
+      loading: true,
+      offer: {}
+    };
+  },
+  mounted() {
+    this.fetchOffer();
+  },
+  methods: {
+    async fetchOffer() {
+      console.log("this.", this.offerCode)
+      try {
+        const response = await axios.get(`https://api.deepspacestore.com/offers/${this.offerCode}`);
+        this.offer = response.data;
+      } catch (error) {
+        console.error('Erro ao buscar a oferta:', error);
+      } finally {
+        this.loading = false;
+      }
+    },
+  },
+};
 </script>

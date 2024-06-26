@@ -1,13 +1,12 @@
 <template>
   <form @submit.prevent="submit">
     <v-text-field
-      :counter="10"
       label="Nome do titular"
     ></v-text-field>
 
     <v-text-field
-      :counter="7"
       label="Número do cartão"
+      type="number"
     ></v-text-field>
     <v-row>
       <v-col
@@ -15,10 +14,11 @@
           md="4"
         >
           <v-text-field
-            v-model="email"
+            v-model="date"
             :rules="emailRules"
             label="Data de validade"
             type="date"
+
             hide-details
             required
           ></v-text-field>
@@ -39,7 +39,5 @@
   </form>
 </template>
 <script setup>
-
-  import { ref } from 'vue'
 
 </script>

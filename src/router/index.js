@@ -1,16 +1,23 @@
-/**
- * router/index.ts
- *
- * Automatic routes for `./src/pages/*.vue`
- */
-
-// Composables
-import { createRouter, createWebHistory } from 'vue-router/auto'
-import { setupLayouts } from 'virtual:generated-layouts'
+// router/index.ts
+import { createRouter, createWebHistory } from "vue-router";
+import Checkout from "@/components/Checkout.vue";
+import OrderCompleted from "@/components/OrderCompleted.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
-  extendRoutes: setupLayouts,
-})
+  routes: [
+    {
+      path: "/checkout/:offerCode",
+      name: "Checkout",
+      component: Checkout,
+      props: true
+    },
+    {
+      path: "/order-completed",
+      name: "OrderCompleted",
+      component: OrderCompleted,
+    }
+  ],
+});
 
-export default router
+export default router;
