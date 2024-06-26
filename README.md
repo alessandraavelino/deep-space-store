@@ -1,3 +1,6 @@
+# ❗️ Ao inicializar o projeto, navegue para a seguinte rota:
+- localhost:3000/checkout/1
+
 # Vuetify (Default)
 
 This is the official scaffolding tool for Vuetify, designed to give you a head start in building your new Vuetify application. It sets up a base template with all the necessary configurations and standard directory structure, enabling you to begin development without the hassle of setting up the project from scratch.
