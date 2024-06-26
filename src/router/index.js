@@ -2,6 +2,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Checkout from "@/components/Checkout.vue";
 import OrderCompleted from "@/components/OrderCompleted.vue";
+import NotFound from "@/components/NotFound.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -16,7 +17,12 @@ const router = createRouter({
       path: "/order-completed",
       name: "OrderCompleted",
       component: OrderCompleted
-    }
+    },
+    {
+      path: "/:pathMatch(.*)*",
+      name: "not-found",
+      component: NotFound,
+    },
   ],
 });
 
