@@ -36,7 +36,6 @@ export default {
       { title: 'Produtos em alta', value: 'foo' },
       { title: 'Mais vendidos', value: 'bar' },
       { title: 'Seja afiliado', value: 'fizz' },
-      { title: 'Buzz', value: 'buzz' },
     ],
   }),
   watch: {
