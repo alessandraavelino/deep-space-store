@@ -87,7 +87,6 @@ export default {
   },
   methods: {
     async fetchOffer() {
-      console.log("this.", this.offerCode)
       try {
         const response = await axios.get(`https://api.deepspacestore.com/offers/${this.offerCode}`);
         this.offer = response.data;

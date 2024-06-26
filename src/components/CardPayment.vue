@@ -74,9 +74,9 @@ export default {
       },
       formData: {
         personalData: {
-          nomeCompleto: '',
+          fullName: '',
           email: '',
-          telefone: ''
+          phone: ''
         },
         addressDelivery: {},
         payment: {}

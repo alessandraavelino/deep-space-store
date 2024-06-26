@@ -2,7 +2,7 @@
   <form @submit.prevent="submitForm">
     <v-text-field
     id="fullName"
-      v-model="localFormData.nomeCompleto"
+      v-model="localFormData.fullName"
       label="Nome completo"
       :rules="[rules.required]"
       @input="validateForm"
@@ -18,11 +18,11 @@
 
     <v-text-field
     id="phone"
-      v-model="localFormData.telefone"
+      v-model="localFormData.phone"
       label="Telefone"
       type="number"
       placeholder="(__) _____-____"
-      :rules="[rules.required, rules.telefone]"
+      :rules="[rules.required, rules.phone]"
       maxlength="14"
       @input="validateForm"
     ></v-text-field>
@@ -40,7 +40,7 @@ export default {
       rules: {
         required: value => !!value || 'Campo obrigatório.',
         email: value => /.+@.+\..+/.test(value) || 'E-mail deve ser válido.',
-        telefone: value => {
+        phone: value => {
           const numericValue = value.replace(/\D/g, '');
           return numericValue.length === 11 || 'Telefone deve ter 11 dígitos (incluindo DDD).';
         },
@@ -49,7 +49,7 @@ export default {
   },
   methods: {
     validateForm() {
-      const isValid = this.localFormData.nomeCompleto && this.localFormData.email && this.localFormData.telefone;
+      const isValid = this.localFormData.fullName && this.localFormData.email && this.localFormData.phone;
       this.$emit('formValidated', isValid);
       this.$emit('updateFormData', this.localFormData);
       return isValid;
