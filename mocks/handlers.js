@@ -18,9 +18,11 @@ export const handlers = [
     })
   }),
 
-  http.post(`https://api.deepspacestore.com/offers/:id/create_order`, () => {
+  http.post(`https://api.deepspacestore.com/offers/:id/create_order`, (req,res) => {
+    const orderData = req.body;
     return HttpResponse.json({
-      'message': `Pedido criado com sucesso!`
+      'message': `Pedido criado com sucesso!`,
+      'orderData': orderData
     }
   )
   }),

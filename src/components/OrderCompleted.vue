@@ -5,6 +5,7 @@
         <v-img
           :width="700"
           :src="successful"
+          alt="Imagem representando compra bem sucedida!"
         ></v-img>
         <h3>Oba... Seu pedido foi realizado com sucesso! 😍🎉</h3>
       </v-col>
@@ -12,15 +13,20 @@
   </v-container>
 </template>
 
-
 <script>
+import succesful from '../../public/imgs/Successful.svg';
 
-import succesful from '../../public/imgs/Successful.svg'
 export default {
   data() {
     return {
       successful: succesful,
+      orderData: null
     };
   },
+  created() {
+    if (this.$route.query.orderData) {
+      this.orderData = JSON.parse(this.$route.query.orderData);
+    }
+  }
 };
 </script>

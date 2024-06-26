@@ -4,7 +4,7 @@
     <v-radio-group v-model="localFormData.paymentMethod" @change="validateForm">
       <v-radio label="Cartão de Crédito" value="card"></v-radio>
       <v-radio label="Boleto bancário" value="bank"></v-radio>
-      <v-radio label="PIX" value="pix"></v-radio>
+      <v-radio label="PIX" value="pix" id="pix"></v-radio>
     </v-radio-group>
   </v-container>
   <v-container v-if="localFormData.paymentMethod === 'card'">
@@ -18,6 +18,7 @@
   </v-container>
   <v-text-field
     class="px-4"
+    id="cpf"
     label="Informe seu CPF"
     v-model="localFormData.cpf"
     :rules="[rules.required, rules.cpf]"

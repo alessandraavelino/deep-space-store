@@ -5,21 +5,32 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "lint": "eslint . --fix --ignore-path .gitignore"
+    "lint": "eslint . --fix --ignore-path .gitignore",
+    "wdio": "wdio run ./wdio.conf.js"
   },
   "dependencies": {
     "@mdi/font": "7.0.96",
+    "@wdio/cli": "^8.39.0",
     "axios": "^1.7.2",
     "core-js": "^3.34.0",
     "cpf-cnpj-validator": "^1.0.3",
     "roboto-fontface": "*",
     "vue": "^3.4.0",
     "vue-the-mask": "^0.11.1",
-    "vuetify": "^3.5.0"
+    "vuetify": "^3.5.0",
+    "webdriverio": "^8.39.0"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^6.4.6",
+    "@testing-library/vue": "^8.1.0",
     "@types/vue-the-mask": "^0.11.5",
-    "@vitejs/plugin-vue": "^5.0.4",
+    "@vitejs/plugin-vue": "^5.0.5",
+    "@wdio/browser-runner": "^8.39.0",
+    "@wdio/junit-reporter": "^8.39.0",
+    "@wdio/local-runner": "^8.39.0",
+    "@wdio/mocha-framework": "^8.39.0",
+    "@wdio/spec-reporter": "^8.39.0",
+    "@wdio/visual-service": "^5.1.0",
     "cypress": "^13.12.0",
     "eslint": "^8.57.0",
     "eslint-config-standard": "^17.1.0",
@@ -44,5 +55,10 @@
     "workerDirectory": [
       "public"
     ]
-  }
+  },
+  "description": "This is the official scaffolding tool for Vuetify, designed to give you a head start in building your new Vuetify application. It sets up a base template with all the necessary configurations and standard directory structure, enabling you to begin development without the hassle of setting up the project from scratch.",
+  "main": ".eslintrc.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }

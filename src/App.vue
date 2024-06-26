@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <Sidebar /> <!-- Componente Sidebar -->
-    <router-view /> <!-- Componente de visualização de rota -->
+    <Sidebar />
+    <router-view />
   </div>
 </template>
 

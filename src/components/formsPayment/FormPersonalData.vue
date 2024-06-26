@@ -1,6 +1,7 @@
 <template>
   <form @submit.prevent="submitForm">
     <v-text-field
+    id="fullName"
       v-model="localFormData.nomeCompleto"
       label="Nome completo"
       :rules="[rules.required]"
@@ -8,6 +9,7 @@
     ></v-text-field>
 
     <v-text-field
+    id="email"
       v-model="localFormData.email"
       label="E-mail"
       :rules="[rules.required, rules.email]"
@@ -15,6 +17,7 @@
     ></v-text-field>
 
     <v-text-field
+    id="phone"
       v-model="localFormData.telefone"
       label="Telefone"
       type="number"

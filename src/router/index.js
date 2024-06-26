@@ -15,7 +15,7 @@ const router = createRouter({
     {
       path: "/order-completed",
       name: "OrderCompleted",
-      component: OrderCompleted,
+      component: OrderCompleted
     }
   ],
 });

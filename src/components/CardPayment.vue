@@ -1,7 +1,6 @@
 <template>
   <v-stepper v-model="step" :items="items" show-actions class="pa-4">
-    <!-- Etapa 1: Informe seus dados -->
-    <v-stepper-step :complete="formValidity.step1">
+    <v-stepper-step :complete="formValidity.step1" id="address">
       <template v-if="step === 1">
         <FormPersonalData
           :formData="formData.personalData"
@@ -11,9 +10,8 @@
       </template>
     </v-stepper-step>
 
-    <!-- Etapa 2: Endereço de entrega -->
     <v-stepper-step :complete="formValidity.step2">
-      <template v-if="step === 2">
+      <template v-if="step === 2" >
         <FormAddressDelivery
           :formData="formData.addressDelivery"
           @formValidated="handleFormValidated"
@@ -22,7 +20,6 @@
       </template>
     </v-stepper-step>
 
-    <!-- Etapa 3: Forma de pagamento -->
     <v-stepper-step :complete="formValidity.step3">
       <template v-if="step === 3">
         <FormPayment
@@ -33,7 +30,6 @@
       </template>
     </v-stepper-step>
 
-    <!-- Slot para personalizar os botões -->
     <template v-slot:prev>
       <v-btn @click="previousStep" :disabled="step === 1">{{ prevStepText }}</v-btn>
     </template>
@@ -129,11 +125,16 @@ export default {
       console.log("linha 122")
       try {
         const response = await axios.post(`https://api.deepspacestore.com/offers/${this.offerCode}/create_order`, this.formData);
-        console.log('Order submitted successfully:', response.data);
-
+        console.log('Order submitted successfully:', response.config.data);
 
         console.log("this.order:", this.order);
-        //this.$router.push({ path: '/order-completed' });
+
+        this.$router.push({
+          path: '/order-completed',
+          query: {
+            orderData: JSON.stringify(response.config.data)
+          }
+        });
       } catch (error) {
         console.error('Error submitting order:', error);
       }

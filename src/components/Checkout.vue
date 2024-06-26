@@ -3,7 +3,6 @@
     <h1>Finalize seu pedido</h1>
     <v-row>
       <v-col cols="12" md="4">
-        <!-- Passando offerCode como prop para CardProduct -->
         <card-product :offerCode="offerCode" />
       </v-col>
       <v-col cols="12" md="8">

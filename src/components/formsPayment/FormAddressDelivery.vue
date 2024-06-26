@@ -4,6 +4,7 @@
       <v-row>
         <v-col cols="12" md="4">
           <v-text-field
+            id="CEP"
             v-model="localFormData.CEP"
             label="CEP"
             :rules="[rules.required, rules.cep]"
@@ -14,6 +15,7 @@
 
         <v-col cols="12" md="4">
           <v-text-field
+            id="state"
             v-model="localFormData.state"
             label="Estado"
             :rules="[rules.required]"
@@ -23,6 +25,7 @@
 
         <v-col cols="12" md="4">
           <v-text-field
+            id="city"
             v-model="localFormData.city"
             label="Cidade"
             :rules="[rules.required]"
@@ -32,6 +35,7 @@
 
         <v-col cols="12" md="4">
           <v-text-field
+            id="street"
             v-model="localFormData.street"
             label="Rua"
             :rules="[rules.required]"
@@ -41,6 +45,7 @@
 
         <v-col cols="12" md="4">
           <v-text-field
+            id="number"
             v-model="localFormData.number"
             label="Número"
             type="number"
@@ -51,6 +56,7 @@
 
         <v-col cols="12" md="4">
           <v-text-field
+            id="complement"
             v-model="localFormData.complement"
             label="Complemento"
             @input="validateForm"
